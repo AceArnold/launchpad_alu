@@ -1,5 +1,6 @@
 import '../models/application.dart';
 import '../models/opportunity.dart';
+import '../models/startup.dart';
 
 class FakeData {
   static List<Opportunity> opportunities = [
@@ -60,4 +61,41 @@ class FakeData {
       appliedAt: DateTime.now().subtract(const Duration(days: 5)),
     ),
   ];
+
+
+// add inside the FakeData class
+static Startup myStartup = Startup(
+  startupId: 'startup1',
+  ownerUid: 'startup1',
+  name: 'TechNova',
+  description: 'We build student-focused productivity tools.',
+  category: 'Software Engineering',
+  isVerified: true,
+  createdAt: DateTime.now().subtract(const Duration(days: 30)),
+);
+
+  // list of applicants for "my" opportunities
+  static List<Application> myApplicants = [
+    Application(
+      applicationId: 'a1',
+      opportunityId: '1',
+      opportunityTitle: 'Frontend Developer Intern',
+      studentUid: 'student1',
+      studentName: 'Aline Uwase',
+      startupId: 'startup1',
+      status: 'pending',
+      appliedAt: DateTime.now().subtract(const Duration(hours: 3)),
+    ),
+    Application(
+      applicationId: 'a2',
+      opportunityId: '1',
+      opportunityTitle: 'Frontend Developer Intern',
+      studentUid: 'student2',
+      studentName: 'Eric Niyonzima',
+      startupId: 'startup1',
+      status: 'pending',
+      appliedAt: DateTime.now().subtract(const Duration(days: 1)),
+    ),
+  ];
+
 }

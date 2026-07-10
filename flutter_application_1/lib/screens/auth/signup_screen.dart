@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../widgets/app_button.dart';
+// ignore: unused_import
 import '../student/student_home_screen.dart';
+// ignore: unused_import
+import 'signup_screen.dart';
+// ignore: unused_import
+import '../startup/startup_home_screen.dart';
+import '../student/student_shell.dart';
+import '../startup/startup_shell.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -23,15 +30,16 @@ class _SignupScreenState extends State<SignupScreen> {
 
     // TODO: replace with real FirebaseAuth.createUserWithEmailAndPassword
     // + write user doc to Firestore with uid, name, email, role
-    Future.delayed(const Duration(milliseconds: 800), () {
+Future.delayed(const Duration(milliseconds: 800), () {
       setState(() => _isLoading = false);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const StudentHomeScreen()),
+        MaterialPageRoute(
+          builder: (context) => _role == 'startup' ? const StartupShell() : const StudentShell(),
+        ),
       );
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

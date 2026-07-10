@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../widgets/app_button.dart';
 import '../student/student_home_screen.dart';
 import 'signup_screen.dart';
+import '../startup/startup_home_screen.dart';
+import '../student/student_shell.dart';
+import '../startup/startup_shell.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  String _role = 'student';
   bool _isLoading = false;
 
   void _handleLogin() {
@@ -25,7 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() => _isLoading = false);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const StudentHomeScreen()),
+        MaterialPageRoute(
+          builder: (context) => _role == 'startup' ? const StartupShell() : const StudentShell(),
+        ),
       );
     });
   }
@@ -63,6 +69,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
                   validator: (value) =>
                       (value == null || value.length < 6) ? 'Min 6 characters' : null,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<String>(
+                  value: _role,
+                  decoration: const InputDecoration(
+                    labelText: 'Role',
+                    border: OutlineInputBorder(),
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: 'student', child: Text('Student')),
+                    DropdownMenuItem(value: 'startup', child: Text('Startup')),
+                  ],
+                  onChanged: (value) {
+                    if (value != null) {
+                      setState(() => _role = value);
+                    }
+                  },
                 ),
                 const SizedBox(height: 24),
                 AppButton(label: 'Log In', onPressed: _handleLogin, isLoading: _isLoading),
