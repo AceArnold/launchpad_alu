@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/auth/login_screen.dart';
 // ignore: unused_import
 import '../screens/student/student_shell.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         useMaterial3: true,
       ),
-      home: const LoginScreen(),
+      home: const SplashScreen(),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'startup_home_screen.dart';
 import 'applicants_screen.dart';
+import 'startup_profile_screen.dart';
 
 class StartupShell extends StatefulWidget {
   const StartupShell({super.key});
@@ -12,7 +13,11 @@ class StartupShell extends StatefulWidget {
 class _StartupShellState extends State<StartupShell> {
   int _index = 0;
 
-  final _screens = const [StartupHomeScreen(), ApplicantsScreen()];
+  final _screens = const [
+    StartupHomeScreen(),
+    ApplicantsScreen(),
+    StartupProfileScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,7 @@ class _StartupShellState extends State<StartupShell> {
         destinations: const [
           NavigationDestination(icon: Icon(Icons.work), label: 'Opportunities'),
           NavigationDestination(icon: Icon(Icons.people), label: 'Applicants'),
+          NavigationDestination(icon: Icon(Icons.storefront), label: 'Profile'),
         ],
       ),
     );
