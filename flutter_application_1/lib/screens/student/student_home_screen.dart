@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../services/fake_data.dart';
 import '../../widgets/opportunity_card.dart';
 import '../../models/opportunity.dart';
+import 'opportunity_detail_screen.dart';
 
 class StudentHomeScreen extends StatefulWidget {
   const StudentHomeScreen({super.key});
@@ -45,7 +46,12 @@ class _StudentHomeScreenState extends State<StudentHomeScreen> {
                       return OpportunityCard(
                         opportunity: opp,
                         onTap: () {
-                          // navigation to detail screen comes next
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OpportunityDetailScreen(opportunity: opp),
+                            ),
+                          );
                         },
                       );
                     },
