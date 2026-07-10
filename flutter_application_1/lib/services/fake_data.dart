@@ -1,3 +1,4 @@
+import '../models/application.dart';
 import '../models/opportunity.dart';
 
 class FakeData {
@@ -34,6 +35,29 @@ class FakeData {
       location: 'Remote',
       createdAt: DateTime.now().subtract(const Duration(days: 3)),
       isOpen: true,
+    ),
+  ];
+
+  static List<Application> applications = [
+    Application(
+      applicationId: 'app1',
+      opportunityId: '1',
+      opportunityTitle: 'Frontend Developer Intern',
+      studentUid: 'student1',
+      studentName: 'Aline',
+      startupId: 'startup1',
+      status: 'pending',
+      appliedAt: DateTime.now().subtract(const Duration(days: 2)),
+    ),
+    Application(
+      applicationId: 'app2',
+      opportunityId: '2',
+      opportunityTitle: 'Marketing Assistant',
+      studentUid: 'student1',
+      studentName: 'Aline',
+      startupId: 'startup2',
+      status: 'accepted',
+      appliedAt: DateTime.now().subtract(const Duration(days: 5)),
     ),
   ];
 }
