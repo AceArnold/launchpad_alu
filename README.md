@@ -79,7 +79,7 @@ lib/
     empty_state.dart
 ```
 
-## 🗄️ Firestore Data Model
+##  Firestore Data Model
 
 ```
 users/{uid}
@@ -97,7 +97,7 @@ applications/{applicationId}
     startupId, status ("pending" | "accepted" | "rejected"), appliedAt
 ```
 
-## ⚙️ Setup & Installation
+##  Setup & Installation
 
 ### Prerequisites
 - Flutter SDK installed
