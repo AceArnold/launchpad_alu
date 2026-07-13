@@ -3,14 +3,14 @@
 
 A Flutter + Firebase mobile marketplace connecting ALU students with internship and opportunity listings from verified, student-led startups at ALU.
 
-## 📱 Overview
+##  Overview
 
 LaunchPad ALU is a two-sided platform:
 - **Startups** register, get verified, and post internship/opportunity listings
 - **Students** discover opportunities, search/filter them, and apply directly through the app
 - All data updates in real time via Firebase Firestore
 
-## 🚀 Features
+##  Features
 
 ### Student Side
 - Sign up / log in with email & password
@@ -33,7 +33,7 @@ LaunchPad ALU is a two-sided platform:
 - Role-based navigation and access (Student vs Startup)
 - Clean, denormalized Firestore schema for fast reads
 
-## 🏗️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -43,7 +43,7 @@ LaunchPad ALU is a two-sided platform:
 | State Management | Provider |
 | Local Dev/Testing | Firebase Local Emulator Suite |
 
-## 📂 Project Structure
+##  Project Structure
 
 ```markdown
 lib/
@@ -166,5 +166,5 @@ Since verification is manual for this project:
 - No push notifications, messaging, or bookmarking yet (potential future features)
 - Currently tested primarily on Android emulator / Chrome (update based on final testing device)
 
-##  Arnold Mutara — ALU Software Engineering
+####  Arnold Mutara — ALU Software Engineering
 
