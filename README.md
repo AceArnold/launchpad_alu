@@ -107,7 +107,7 @@ applications/{applicationId}
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/arnoldmutara/launchpad_alu.git
+git clone https://github.com/AceArnold/launchpad_alu.git
 cd launchpad_alu
 ```
 
@@ -120,18 +120,21 @@ flutter pub get
 ```bash
 dart pub global activate flutterfire_cli
 flutterfire configure
+
+Select your Firebase project and target platform(s) when prompted. This generates 
+`lib/firebase_options.dart`.
 ```
-Select your Firebase project and target platform(s) when prompted. This generates `lib/firebase_options.dart`.
 
 ### 4. Start the Firebase Emulators
 ```bash
 firebase emulators:start
-```
+
 This runs Authentication and Firestore emulators locally. Leave this running in its own terminal while developing.
 
 - Emulator UI: `http://127.0.0.1:4000`
 - Auth emulator: port `9099`
 - Firestore emulator: port `8080`
+```
 
 ### 5. Run the app
 ```bash
