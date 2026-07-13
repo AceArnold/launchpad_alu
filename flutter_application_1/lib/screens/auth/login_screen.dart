@@ -8,6 +8,7 @@ import 'signup_screen.dart';
 // ignore: unused_import
 import '../startup/startup_home_screen.dart';
 import '../student/student_shell.dart';
+// ignore: duplicate_import
 import '../startup/startup_shell.dart';
 
 class LoginScreen extends StatefulWidget {
