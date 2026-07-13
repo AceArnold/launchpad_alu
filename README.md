@@ -143,7 +143,7 @@ flutter run
 
 Select your target device (Android emulator, physical device, or Chrome for quick testing).
 
-## 🔐 Enabling Startup Verification (for testing)
+## 6. Enabling Startup Verification (for testing)
 
 Since verification is manual for this project:
 1. Open the Firestore Emulator UI at `http://127.0.0.1:4000/firestore`
@@ -151,7 +151,7 @@ Since verification is manual for this project:
 3. Find the relevant startup document
 4. Manually set `isVerified` to `true`
 
-## 🧪 Testing the Full Flow
+## 7. Testing the Full Flow
 
 1. Sign up as a **Startup** → post an opportunity
 2. Flip `isVerified` to `true` in the emulator (see above)
@@ -159,13 +159,12 @@ Since verification is manual for this project:
 4. Log back in as the Startup → view the applicant → update their status
 5. Log back in as the Student → confirm the application status updated in real time
 
-## 📌 Known Limitations / Future Work
+## 8. Known Limitations / Future Work
 
 - Firestore security rules are currently open (test mode) — production deployment would require locking these down per user role
 - Startup verification is manual; a future version could include an admin review dashboard
 - No push notifications, messaging, or bookmarking yet (potential future features)
 - Currently tested primarily on Android emulator / Chrome (update based on final testing device)
 
-## 👤 Author
+##  Arnold Mutara — ALU Software Engineering
 
-Arnold Mutara — ALU Software Engineering
