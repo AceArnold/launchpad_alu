@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../widgets/app_button.dart';
+import '../../models/opportunity.dart';
+import '../../services/firestore_service.dart';
 
 class PostOpportunityScreen extends StatefulWidget {
   const PostOpportunityScreen({super.key});
@@ -13,6 +16,7 @@ class _PostOpportunityScreenState extends State<PostOpportunityScreen> {
   final _titleController = TextEditingController();
   final _descController = TextEditingController();
   final _locationController = TextEditingController();
+  final FirestoreService _firestoreService = FirestoreService();
   String _category = 'Software Engineering';
   bool _isLoading = false;
 
@@ -25,18 +29,44 @@ class _PostOpportunityScreenState extends State<PostOpportunityScreen> {
     'Other',
   ];
 
-  void _handlePost() {
+  void _handlePost() async {
     if (!_formKey.currentState!.validate()) return;
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
     setState(() => _isLoading = true);
 
-    // TODO: replace with real Firestore write to 'opportunities' collection
-    Future.delayed(const Duration(milliseconds: 800), () {
-      setState(() => _isLoading = false);
+    try {
+      final startup = await _firestoreService.getStartup(user.uid);
+
+      final opportunity = Opportunity(
+        opportunityId: '', // Firestore auto-generates this
+        startupId: user.uid,
+        startupName: startup?.name ?? 'Unknown Startup',
+        title: _titleController.text.trim(),
+        description: _descController.text.trim(),
+        category: _category,
+        location: _locationController.text.trim(),
+        createdAt: DateTime.now(),
+        isOpen: true,
+      );
+
+      await _firestoreService.postOpportunity(opportunity);
+
+      if (!mounted) return;
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Opportunity posted!')),
       );
-    });
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   @override

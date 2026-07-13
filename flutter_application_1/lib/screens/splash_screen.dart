@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import '../services/auth_service.dart';
 import 'auth/login_screen.dart';
+import 'student/student_shell.dart';
+import 'startup/startup_shell.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -9,21 +12,49 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final AuthService _authService = AuthService();
+
   @override
   void initState() {
     super.initState();
     _checkAuth();
   }
 
-  void _checkAuth() {
-    // TODO: replace with real check — FirebaseAuth.instance.currentUser
-    Future.delayed(const Duration(seconds: 1), () {
+  void _checkAuth() async {
+    // Small delay so the splash branding is actually visible, not just a flash
+    await Future.delayed(const Duration(milliseconds: 800));
+
+    if (!mounted) return;
+
+    try {
+      final appUser = await _authService.getCurrentUserProfile();
+
+      if (!mounted) return;
+
+      if (appUser == null) {
+        // No one logged in — go to Login
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
+      } else {
+        // Already logged in — skip straight to their home screen
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                appUser.role == 'startup' ? const StartupShell() : const StudentShell(),
+          ),
+        );
+      }
+    } catch (e) {
+      // If anything goes wrong (e.g. no network), fall back to Login
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
-    });
+    }
   }
 
   @override
