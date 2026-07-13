@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1019962707674",
+    "project_id": "launchpad-alu-d2aa2",
+    "storage_bucket": "launchpad-alu-d2aa2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019962707674:android:36ec192846532353525fe3",
+        "android_client_info": {
+          "package_name": "com.arnold.launchpad_alu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-h2O2hJXc20MD6djrys2upWFYu4WEyWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019962707674:android:4f46ea9bf0800a7b525fe3",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-h2O2hJXc20MD6djrys2upWFYu4WEyWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

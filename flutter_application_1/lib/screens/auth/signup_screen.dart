@@ -1,3 +1,4 @@
+import '../../services/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/app_button.dart';
 // ignore: unused_import
@@ -17,6 +18,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -24,22 +26,35 @@ class _SignupScreenState extends State<SignupScreen> {
   String _role = 'student';
   bool _isLoading = false;
 
-  void _handleSignup() {
-    if (!_formKey.currentState!.validate()) return;
-    setState(() => _isLoading = true);
+void _handleSignup() async {
+  if (!_formKey.currentState!.validate()) return;
+  setState(() => _isLoading = true);
 
-    // TODO: replace with real FirebaseAuth.createUserWithEmailAndPassword
-    // + write user doc to Firestore with uid, name, email, role
-Future.delayed(const Duration(milliseconds: 800), () {
-      setState(() => _isLoading = false);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => _role == 'startup' ? const StartupShell() : const StudentShell(),
-        ),
-      );
-    });
+  try {
+    final appUser = await _authService.signUp(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+      name: _nameController.text.trim(),
+      role: _role,
+    );
+
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => appUser.role == 'startup' ? const StartupShell() : const StudentShell(),
+      ),
+    );
+  } catch (e) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(_authService.getErrorMessage(e))),
+    );
+  } finally {
+    if (mounted) setState(() => _isLoading = false);
   }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

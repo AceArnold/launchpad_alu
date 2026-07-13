@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'screens/auth/login_screen.dart';
-// ignore: unused_import
-import '../screens/student/student_shell.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'firebase_options.dart';
 import 'screens/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Point at the local emulators instead of production Firebase
+  await FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
+  FirebaseFirestore.instance.useFirestoreEmulator('127.0.0.1', 8080);
+
   runApp(const MyApp());
 }
 

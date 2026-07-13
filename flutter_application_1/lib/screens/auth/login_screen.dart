@@ -1,3 +1,5 @@
+import '../../services/auth_service.dart';
+import '../startup/startup_shell.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/app_button.dart';
 // ignore: unused_import
@@ -16,27 +18,39 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final AuthService _authService = AuthService();
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   String _role = 'student';
   bool _isLoading = false;
 
-  void _handleLogin() {
-    if (!_formKey.currentState!.validate()) return;
-    setState(() => _isLoading = true);
+  void _handleLogin() async {
+  if (!_formKey.currentState!.validate()) return;
+  setState(() => _isLoading = true);
 
-    // TODO: replace with real FirebaseAuth.signInWithEmailAndPassword
-    Future.delayed(const Duration(milliseconds: 800), () {
-      setState(() => _isLoading = false);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => _role == 'startup' ? const StartupShell() : const StudentShell(),
-        ),
-      );
-    });
+  try {
+    final appUser = await _authService.logIn(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => appUser.role == 'startup' ? const StartupShell() : const StudentShell(),
+      ),
+    );
+  } catch (e) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(_authService.getErrorMessage(e))),
+    );
+  } finally {
+    if (mounted) setState(() => _isLoading = false);
   }
+}
 
   @override
   Widget build(BuildContext context) {
