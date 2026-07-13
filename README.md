@@ -1,4 +1,4 @@
-```markdown
+
 # LaunchPad ALU
 
 A Flutter + Firebase mobile marketplace connecting ALU students with internship and opportunity listings from verified, student-led startups at ALU.
@@ -45,7 +45,7 @@ LaunchPad ALU is a two-sided platform:
 
 ## 📂 Project Structure
 
-```
+```markdown
 lib/
   main.dart
   firebase_options.dart
@@ -137,6 +137,7 @@ This runs Authentication and Firestore emulators locally. Leave this running in 
 ```bash
 flutter run
 ```
+
 Select your target device (Android emulator, physical device, or Chrome for quick testing).
 
 ## 🔐 Enabling Startup Verification (for testing)
@@ -165,4 +166,3 @@ Since verification is manual for this project:
 ## 👤 Author
 
 Arnold Mutara — ALU Software Engineering
-```
