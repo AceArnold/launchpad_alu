@@ -1,1 +1,38 @@
-{"emulators":{"singleProjectMode":true,"auth":{"port":9099},"firestore":{"port":8080},"ui":{"enabled":true}},"flutter":{"platforms":{"android":{"default":{"projectId":"launchpad-alu-d2aa2","appId":"1:1019962707674:android:4f46ea9bf0800a7b525fe3","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"launchpad-alu-d2aa2","configurations":{"android":"1:1019962707674:android:4f46ea9bf0800a7b525fe3","web":"1:1019962707674:web:3e5fe25a129b262a525fe3","windows":"1:1019962707674:web:8ca89049a6ba3236525fe3"}}}}}}
+{
+  "emulators": {
+    "singleProjectMode": true,
+    "auth": {
+      "port": 9099,
+      "host": "0.0.0.0"
+    },
+    "firestore": {
+      "port": 8080,
+      "host": "0.0.0.0"
+    },
+    "ui": {
+      "enabled": true,
+      "host": "0.0.0.0"
+    }
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "launchpad-alu-d2aa2",
+          "appId": "1:1019962707674:android:4f46ea9bf0800a7b525fe3",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "launchpad-alu-d2aa2",
+          "configurations": {
+            "android": "1:1019962707674:android:4f46ea9bf0800a7b525fe3",
+            "web": "1:1019962707674:web:3e5fe25a129b262a525fe3",
+            "windows": "1:1019962707674:web:8ca89049a6ba3236525fe3"
+          }
+        }
+      }
+    }
+  }
+}

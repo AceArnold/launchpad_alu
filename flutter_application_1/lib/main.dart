@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'firebase_options.dart';
 import 'screens/splash_screen.dart';
+import 'dart:io' show Platform;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,8 +14,9 @@ void main() async {
   );
 
   // Point at the local emulators instead of production Firebase
-  await FirebaseAuth.instance.useAuthEmulator('127.0.0.1', 9099);
-  FirebaseFirestore.instance.useFirestoreEmulator('127.0.0.1', 8080);
+final emulatorHost = Platform.isAndroid ? '192.168.1.70' : '127.0.0.1';
+await FirebaseAuth.instance.useAuthEmulator(emulatorHost, 9099);
+FirebaseFirestore.instance.useFirestoreEmulator(emulatorHost, 8080);
 
   runApp(const MyApp());
 }
